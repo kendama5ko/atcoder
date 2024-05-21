@@ -1,0 +1,47 @@
+{
+	// Place your trialCode ワークスペース snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"atcoder": {
+		"prefix": "templateAtcoder",
+		"body": [
+			"$1import java.util.*;",
+			"public static void main(String[] args) {",
+			"\tScanner sc = new Scanner(System.in);",
+			"\t${2|int N,String S|} ${3|= sc.nextInt();,= sc.nextLine();|}",
+			"\t",
+			"\tint[] $4A = new int[N];",
+			"\tfor (int i = 0; i < N; i++) {",
+			"\t$5",
+			"\t}",
+			"\tsc.close();",
+			"}"
+		],
+		"description": "Scanner" //任意
+	},
+
+	"forfor": {
+		"prefix": "forfor",
+		"body": [
+			"for (int i = 0; i < $1args.length; i++) {",
+			"\tfor (int j = 0; j < $2args.length; j++) {",
+            "\t\t",
+            "\t}",
+			"}"
+		],
+		"description": "二重ループ"
+	}
+}
