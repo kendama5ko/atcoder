@@ -1,4 +1,4 @@
-package atcoder.B;
+package B;
 import java.util.*;
 //提出する時はmainに変更する
 public class B_Polygon {

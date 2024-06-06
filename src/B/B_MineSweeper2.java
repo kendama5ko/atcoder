@@ -40,7 +40,7 @@
      * .#.#.
      * .....
      */
-    package atcoder.B;
+    package B;
     
     import java.util.*;
     
