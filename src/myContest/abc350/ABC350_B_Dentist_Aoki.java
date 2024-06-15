@@ -1,4 +1,4 @@
-package atcoder.myContest.abc350;
+package myContest.abc350;
 
 import java.util.Scanner;
 public class ABC350_B_Dentist_Aoki {
