@@ -1,4 +1,4 @@
-package atcoder.myContest.abc351;
+package myContest.abc351;
 
 import java.util.ArrayList;
 import java.util.List;
