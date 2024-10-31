@@ -96,3 +96,138 @@ fruitsNoEmpty ==> String[5] { "apple", "banana", "", "cherry", "" }
 // 右寄せ(10文字):|         右|
 ``` 
 ---
+# 3次元の配列
+```java
+char[][][] sample = new char[3][4][5];
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+        for (int k = 0; k < 5; k++) {
+            sample[i][j][k] = '.';
+        }
+    }
+}
+for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 4; j++) {
+        for (int k = 0; k < 5; k++) {
+            System.out.print(sample[i][j][k]);
+        }
+        System.out.println();
+    }
+	System.out.println();
+}
+.....
+.....
+.....
+.....
+
+.....
+.....
+.....
+.....
+
+.....
+.....
+.....
+.....
+```
+配列に対してfor文でアクセスする場合、最初に変化する一番内側のループが配列の右端に対応する
+つまり、配列の[]の順番でfor文を回せば良い
+
+---
+# sort
+## int[]のソート
+```java
+int[] arr = {5, 3, 8, 1, 4};
+Arrays.sort(arr);  // 昇順ソート
+System.out.println(Arrays.toString(arr));  // [1, 3, 4, 5, 8]
+
+Integer[] arr = {5, 3, 8, 1, 4};
+Arrays.sort(arr, Collections.reverseOrder());  // 降順ソート
+System.out.println(Arrays.toString(arr));  // [8, 5, 4, 3, 1]
+※降順の場合はint[]からInteger[]に変換が必要です。
+```
+## Listのソート
+```java
+List<Integer> list = new ArrayList<>();
+list.add(5);
+list.add(3);
+list.add(8);
+list.add(1);
+list.add(4);
+
+Collections.sort(list);  // 昇順ソート
+System.out.println(list);  // [1, 3, 4, 5, 8]
+
+Collections.sort(list, Collections.reverseOrder());  // 降順ソート
+System.out.println(list);  // [8, 5, 4, 3, 1]
+```
+
+## compareを利用したソート
+```java
+List<Integer> numbers = Arrays.asList(3, 2, 5, 4, 1);
+Collections.sort(numbers, (a, b) -> a - b); // 昇順
+Collections.sort(numbers, (a, b) -> b - a); // 降順
+```
+
+## 複数条件を指定してソート
+```java
+// MenuListクラスはint price , String itemを持っている
+Collections.sort(menuList, (a, b) -> {
+
+    // priceが最優先でソートされる
+    if (a.price != b.price) {
+        return (a.price - b.price);  // 昇順
+        // return -(a.price - b.price);    // 降順
+
+        // priceが同じあればitemでソート
+    } else {
+        return a.item.compareTo(b.item);        // 昇順
+        // return -(a.item.compareTo(b.item));  // 降順
+
+        // もしさらに項目を増やしたければ、上をelse ifにしてここからelseで条件を指定
+        // else { // ここに追加 }
+    }
+});
+```
+### (a, b) -> a - b の場合分け（昇順）
+- a > b なら、 b a  
+正の値(1)が返り、aが後ろに回る  
+- a < b なら、 a b の並びになる  
+負の値(1)が返り、aの位置はそのまま。
+
+### (a, b) -> b - a の場合分け（降順）
+- b > a なら、 b a  
+正の値(1)が返り、bの位置はそのまま。  
+- b < a なら、 a b の並びになる  
+負の値(1)が返り、bが後ろに回る  
+### 意識すること
+- aとbの位置関係とその大小の関係が重要
+- 比較した時に、aが大きい場合は位置が変わる
+- 単純な考え方をすれば、aが符号の向いている方に移動するということ
+（a - b　なのに b < a といったように位置関係を変えてはいけない）
+
+
+# Stringでよく使うメソッド
+```java
+s.length();             //文字列の長さを返す
+s.compareTo(t);         //辞書順で比較する
+s.charAt(0);            //指定したインデックスの値を返す
+s.substring(2,5);       //部分文字列を返す
+s.indexOf(t);           //指定した文字列が最初に出現するインデックスを返す
+s.lastIndexOf(t);       //指定した文字列が最後に出現するインデックスを返す
+s.startsWith(t);        //文字列が指定された接頭詞で始まるか判定する
+s.endsWith(t);          //文字列が指定された接尾詞で終わるか判定する
+s.contains(t);          //指定した文字列を含むか調べる
+s.matches("\\w+");      //指定した正規表現と一致するか判定する
+s.toLowerCase();        //小文字に変換する
+s.toUpperCase();        //大文字に変換する
+s.replace('b','m');     //文字を置換する
+s.replace("b","tri");   //文字列を置換する
+s.replaceAll("[0-9]+","10"); //正規表現を用いて置換する
+s.split("n");           //文字列を正規表現によって分割する
+String.format("%04d", 123); //フォーマットした文字列を返す
+String.valueOf(5);      //Integer.toString(5) と同じ
+
+
+```
+
