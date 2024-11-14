@@ -1,3 +1,5 @@
+package myContest.abc377;
+
 import java.util.*;
 
 // https://atcoder.jp/contests/abc377
