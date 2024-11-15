@@ -95,6 +95,31 @@ fruitsNoEmpty ==> String[5] { "apple", "banana", "", "cherry", "" }
 // 左寄せ(10文字):<左         >
 // 右寄せ(10文字):|         右|
 ``` 
+
+## Stringでよく使うメソッド
+```java
+s.length();             //文字列の長さを返す
+s.compareTo(t);         //辞書順で比較する
+s.charAt(0);            //指定したインデックスの値を返す
+s.substring(2,5);       //部分文字列を返す
+s.indexOf(t);           //指定した文字列が最初に出現するインデックスを返す
+s.lastIndexOf(t);       //指定した文字列が最後に出現するインデックスを返す
+s.startsWith(t);        //文字列が指定された接頭詞で始まるか判定する
+s.endsWith(t);          //文字列が指定された接尾詞で終わるか判定する
+s.contains(t);          //指定した文字列を含むか調べる
+s.matches("\\w+");      //指定した正規表現と一致するか判定する
+s.toLowerCase();        //小文字に変換する
+s.toUpperCase();        //大文字に変換する
+s.replace('b','m');     //文字を置換する
+s.replace("b","tri");   //文字列を置換する
+s.replaceAll("[0-9]+","10"); //正規表現を用いて置換する
+s.split("n");           //文字列を正規表現によって分割する
+String.format("%04d", 123); //フォーマットした文字列を返す
+String.valueOf(5);      //Integer.toString(5) と同じ
+
+
+```
+
 ---
 # 3次元の配列
 ```java
@@ -160,6 +185,31 @@ System.out.println(list);  // [1, 3, 4, 5, 8]
 
 Collections.sort(list, Collections.reverseOrder());  // 降順ソート
 System.out.println(list);  // [8, 5, 4, 3, 1]
+```
+## String[]のソート
+```java
+String[] num = new String[5];
+num[0] = "4";
+num[1] = "2";
+num[2] = "10";
+num[3] = "1";
+num[4] = "22";
+
+Arrays.sort(num)
+
+num ==> String[5] { "1", "10", "2", "22", "4" }
+// 最初の文字が比較され、同じであれば次の文字で比較される。
+// つまり、1, 2 , 4 , 10 , 22とはならない。
+// 最大値の桁数に満たない数字は0で埋める必要がある。（最大値が100であれば001）
+num[0] = "04";
+num[1] = "02";
+num[2] = "10";
+num[3] = "01";
+num[4] = "22";
+
+Arrays.sort(num)
+
+num ==> String[5] { "01", "02", "04", "10", "22" }
 ```
 
 ## compareを利用したソート
