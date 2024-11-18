@@ -43,7 +43,7 @@ for (int i = 0; i < A.length(); i++) {
 -----
 # Stringから特定の文字を取り除く
 
-### Stringに用意されているsplitを利用する
+## Stringに用意されているsplitを利用する
 ```java
 // split
 String str = "One／Two／Three";
@@ -119,7 +119,26 @@ String.valueOf(5);      //Integer.toString(5) と同じ
 
 
 ```
+## 出力の文字色を変える
+### 方法
+色変更のためのエスケープシークエンスを入れる
+### 例
+色のコード + [文字や変数] + "\u001b[00m"
+```Java
+static String red    = "\u001b[00;31m";
+static String green  = "\u001b[00;32m";
+static String yellow = "\u001b[00;33m";
+static String purple = "\u001b[00;34m";
+static String pink   = "\u001b[00;35m";
+static String cyan   = "\u001b[00;36m";
+static String end    = "\u001b[00m";
 
+String[] names = new String[]{red,green,yellow,purple,pink,cyan};
+
+for(int i=0; i< names.length; i++){
+    System.out.println(names[i]+"hello"+end);
+}
+```
 ---
 # 3次元の配列
 ```java
