@@ -2,6 +2,7 @@ package myContest.abc380;
 import java.util.*;
 
 // https://atcoder.jp/contests/abc380
+// ランレングス圧縮
 
 public class B380 {
     public static void main(String[] args) {
