@@ -276,27 +276,70 @@ Collections.sort(menuList, (a, b) -> {
 （a - b　なのに b < a といったように位置関係を変えてはいけない）
 
 
-# Stringでよく使うメソッド
-```java
-s.length();             //文字列の長さを返す
-s.compareTo(t);         //辞書順で比較する
-s.charAt(0);            //指定したインデックスの値を返す
-s.substring(2,5);       //部分文字列を返す
-s.indexOf(t);           //指定した文字列が最初に出現するインデックスを返す
-s.lastIndexOf(t);       //指定した文字列が最後に出現するインデックスを返す
-s.startsWith(t);        //文字列が指定された接頭詞で始まるか判定する
-s.endsWith(t);          //文字列が指定された接尾詞で終わるか判定する
-s.contains(t);          //指定した文字列を含むか調べる
-s.matches("\\w+");      //指定した正規表現と一致するか判定する
-s.toLowerCase();        //小文字に変換する
-s.toUpperCase();        //大文字に変換する
-s.replace('b','m');     //文字を置換する
-s.replace("b","tri");   //文字列を置換する
-s.replaceAll("[0-9]+","10"); //正規表現を用いて置換する
-s.split("n");           //文字列を正規表現によって分割する
-String.format("%04d", 123); //フォーマットした文字列を返す
-String.valueOf(5);      //Integer.toString(5) と同じ
 
+# 座標などで重複しない2つの値を保持する方法
+
+## AbstractMap.SimpleEntry
+```java
+Set<AbstractMap.SimpleEntry<Integer, Integer>> pos = new HashSet<>();
+
+        // 座標[1,3]と[5,3]を追加
+        pos.add(new AbstractMap.SimpleEntry<>(1, 3)); // true
+        pos.add(new AbstractMap.SimpleEntry<>(5, 3)); // true
+
+        // 同じ値を渡すとfalseが返り追加されない
+        pos.add(new AbstractMap.SimpleEntry<>(1, 3)); // false
 
 ```
 
+## HashSet\<String\> 
+```java
+Set<String> pos = new HashSet<>();
+// 追加する座標など
+int a = 1;
+int b = 3;
+
+// ","を追加して座標を表現
+pos.add(a + "," + b);
+
+// ただし、数値化する時はHashSetのためgetなどはできず、foreachなどで全てを呼び出さなければならない
+```
+
+## List<int[]>, List<object[]>
+
+### List<int[]>
+- int[]の要素をgetで取り出してから、[0]か[1]にアクセスする
+- 要素の変更を行いたい場合は、set(index, new int[])で行う
+```Java
+List<int[]> list = new ArrayList<>();
+
+// ペアを追加
+list.add(new int[]{3, 5});
+list.add(new int[]{7, 9});
+list.add(new int[]{1, 2});
+
+// 3つ目の要素のint[1]を取得
+int[] thirdPair = list.get(2); 
+int value = thirdPair[1];
+
+System.out.println("3つ目の要素のint[1]: " + value);
+
+// 2番目の要素を変更
+list.set(1, new int[]{10, 100});
+```
+### List<Object[]>
+- 取り出すときはList<int[]>の時と同じだが、必ずキャストして取り出す必要がある
+```Java
+List<Object[]> list = new ArrayList<>();
+
+// 異なる型の要素を追加
+list.add(new Object[]{3, "abc"});
+list.add(new Object[]{7, "xyz"});
+
+// リストの内容を出力
+for (Object[] pair : list) {
+    int number = (int) pair[0];
+    String text = (String) pair[1];
+    System.out.println("(" + number + ", " + text + ")");
+}
+```
