@@ -21,16 +21,23 @@ dj { 0, 0, -1, 1}
 
 ----------------
 # 変換
-
-## charから数字に変換  
+## charから数字に変換
 charから'0'を引くとint型に変換できる
 ```java
 char c = '5';
 int num = c - '0';  // numに 5 が入る
+
+char a = '7'
+int b = Character.getNumericValue(a); // bに 7 が入る
 ```
 もしも c から num へそのまま渡すと53という数字になる  
 char型の '5' は 53、char型の '0' は 48 なので、'0'を引くとint型の5になる
-
+## charにintを入れる方法
+```java
+int cnt = 5;
+char a = (char) ('0' + cnt);  // 数値を文字に変換
+System.out.println(a);  // 出力: 5
+```
 ### 数字が入っているStringから一桁ずつ取り出す
 ```java
 String A = "123";
@@ -382,4 +389,11 @@ for (Object[] pair : list) {
     String text = (String) pair[1];
     System.out.println("(" + number + ", " + text + ")");
 }
+# Deque クラス（デック）
+## Dequeとは
+double ended queue（両端キュー）の略
+stackとqueue、どちらのようにも振る舞うことが可能
+## Dequeの実装クラスは
+- ArrayDeque: 挿入、削除、取得を両端でしか行わない場合、ArrayDequeのほうが高速に動作
+- LinkedList: 配列の中間にアクセスする場合（containsやindexOfなど）は、LinkedListのほうが速い
 ```
